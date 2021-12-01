@@ -1,28 +1,43 @@
 <template>
   <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+    <SearchBar :films="filmList" @search="startSearch" />
+
+    <Content :selectedMovie="filmToSearch" @filmReady="getfilmList" />
   </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+import Content from './components/Content.vue'
+import SearchBar from './components/SearchBar.vue'
+
 
 export default {
   name: 'App',
   components: {
-    HelloWorld
+    Content,
+    SearchBar
+  },
+  data() {
+    return {
+      filmList: [],
+      filmToSearch: "",
+    }
+  },
+  methods: {
+    getfilmList(allFilms) {
+      this.filmList = allFilms;
+    },
+    startSearch(filmToSearch) {
+      this.filmToSearch = filmToSearch;
+    }
   }
 }
 </script>
 
 <style lang="scss">
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 </style>
