@@ -1,15 +1,15 @@
 <template>
   <div id="app">
-    <SearchBar :films="filmList" @search="startSearch" />
+    <SearchBar  @searching="startSearch" />
 
-    <Content :selectedMovie="filmToSearch" @filmReady="getfilmList" />
+    <Content :movies="movieList" />
   </div>
 </template>
 
 <script>
 import Content from './components/Content.vue'
 import SearchBar from './components/SearchBar.vue'
-
+import axios from 'axios';
 
 export default {
   name: 'App',
@@ -19,16 +19,22 @@ export default {
   },
   data() {
     return {
-      filmList: [],
-      filmToSearch: "",
+       apiUrl: "https://api.themoviedb.org/3/search/movie?api_key=971c983e8762f921083518b235cba01b&query=",
+        movieList: [],
+        searchMovie: "",
     }
   },
   methods: {
-    getfilmList(allFilms) {
-      this.filmList = allFilms;
+    getMovies() {
+      axios 
+      .get(this.apiUrl+this.searchMovie)
+      .then((result) => {
+          this.movieList = result.data.results
+      })
     },
     startSearch(filmToSearch) {
-      this.filmToSearch = filmToSearch;
+      this.searchMovie = filmToSearch;
+      this.getMovies();
     }
   }
 }

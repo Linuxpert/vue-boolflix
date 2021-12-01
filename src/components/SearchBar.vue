@@ -21,12 +21,6 @@ export default {
             inputText: ""
         }
     },
-    methods: {
-        searching() {
-            this.searchMovie = this.inputText
-            console.log("eeeis");
-        }
-    }
 }
 </script>
 
