@@ -1,8 +1,8 @@
 <template>
   <div class="series">
       <div class="img_poster">
-          <img v-if="serie.backdrop_path === 'null'" :src="``" alt="">
-          <img  v-else :src="`https://image.tmdb.org/t/p/w342${serie.poster_path}`" alt="">
+          
+          <img :src="`https://image.tmdb.org/t/p/w342${serie.poster_path}`" alt="">
           
           <div class="info">
                 <h3>Titolo: {{serie.name}}</h3>
