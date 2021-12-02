@@ -3,10 +3,15 @@
     <div class="img_poster">
       <img :src="`https://image.tmdb.org/t/p/w342${film.poster_path}`" alt="" class="img_film">
       <div class="info">
-        <h3>{{film.title}}</h3>
+        <div class="info_film">
+          <h3>Titolo:</h3><span>{{film.title}}</span>
+        </div>
+        
       
-      
-        <h3>{{film.original_title}}</h3>
+        <div class="info_film">
+          <h3>Titolo originale: </h3><span>{{film.original_title}}</span>
+        </div>
+        
       
       
         <img v-if="film.original_language === 'en'" src="https://lonampio.files.wordpress.com/2014/08/bandiera-inglese.png?w=256" :alt="film.title" class="flag">
@@ -14,8 +19,13 @@
         <img v-else-if="film.original_language === 'fr'" src="https://www.ristorantemarinadelnettuno.com/wp-content/uploads/2019/08/bandiera-francia-png-3.png" :alt="film.title" class="flag">
         <span v-else>language not found</span>
       
-      
-        <h3>{{film.vote_average/2}}</h3>
+        <div class="info_film">
+          <h3>Voto: </h3><span>{{film.vote_average/2}}</span>
+        </div>
+        <div class="info_film">
+          <h3>Overview: </h3><span>{{film.overview}}</span>
+        </div>
+        
       </div>
     </div>
       
@@ -50,6 +60,11 @@ export default {
           width: 50px;
           height: 50px;
         }
+        .info_film h3{
+          display: inline;
+          color: red;
+        }
+        
       }
       .film:hover .img_film{
           display: none;
