@@ -3,7 +3,7 @@
       <h3>{{serie.name}}</h3>
       <h3>{{serie.original_name}}</h3>
       <h3>{{serie.original_language}}</h3>
-      <h3>{{serie.vote_average}}</h3>
+      <h3>{{serie.vote_average/2}}</h3>
   </div>
 
   
