@@ -21,7 +21,6 @@ export default {
     return {
       apiTv: "https://api.themoviedb.org/3/search/tv?api_key=971c983e8762f921083518b235cba01b&language=it_IT&query=",
       tvList: [],
-      searchTv: "",
       apiUrl: "https://api.themoviedb.org/3/search/movie?api_key=971c983e8762f921083518b235cba01b&query=",
       movieList: [],
       searchMovie: "",
@@ -41,13 +40,13 @@ export default {
     },
     getTvs() {
       axios 
-      .get(this.apiTv+this.searchTv)
+      .get(this.apiTv+this.searchMovie)
       .then((result) => {
           this.tvList = result.data.results
       })
     },
     startSearchTv(tvToSearch) {
-      this.searchTv = tvToSearch;
+      this.searchMovie = tvToSearch;
       this.getTvs();
     }
   }
@@ -59,5 +58,8 @@ export default {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+}
+body{
+  background-color: grey;
 }
 </style>

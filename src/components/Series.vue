@@ -1,9 +1,9 @@
 <template>
   <div class="series">
-      <h3>{{details.name}}</h3>
-      <h3>{{details.original_name}}</h3>
-      <h3>{{details.original_language}}</h3>
-      <h3>{{details.vote_average}}</h3>
+      <h3>{{serie.name}}</h3>
+      <h3>{{serie.original_name}}</h3>
+      <h3>{{serie.original_language}}</h3>
+      <h3>{{serie.vote_average}}</h3>
   </div>
 
   
@@ -14,8 +14,25 @@
 export default {
   name: 'Series',
   props: {
-    details: Object,
-  }
+    serie: Object,
+  },
+  methods: {
+    getImgLanguage(element){
+        if(element.original_language === 'en'){
+            return ""
+        }else if (element.original_language === 'it'){
+            return "https://banner2.cleanpng.com/20171217/580/italia-flag-png-5a37458281e1f0.924151041513571714532.jpg"
+        }else if (element.original_language === 'ja'){
+            return ""
+        }else if (element.original_language === 'tl'){
+            return ""
+        }else if (element.original_language === 'fr'){
+            return ""
+        } else {
+            return "no found"
+        }
+    }       
+}
 }
 
 </script>
