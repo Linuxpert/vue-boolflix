@@ -1,24 +1,33 @@
 <template>
   <div id="backgoundFilms">
-      <div id="container">
+      <div class="container">
           <Film 
             v-for="movie, i in movies" 
             :key="i"
             :details="movie" />
+      </div>
+      <div class="container">
+          <Series
+            v-for="tv, i in tvs" 
+            :key="i"
+            :details="tv" />
       </div>
   </div>
 </template>
 
 <script>
 import Film from '@/components/Film.vue';
+import Series from '@/components/Series.vue';
 
 export default {
   name: 'Content',
 components: {
     Film,
+    Series
 },
 props:{
-    movies: Array
+    movies: Array,
+    tvs: Array
 },
 }
 
@@ -29,7 +38,7 @@ props:{
     #backgoundFilms{
         background-color: grey;
         height: 100vh;
-        #container{
+       .container{
             width: 60%;
             margin: 0 auto;
             display: flex;

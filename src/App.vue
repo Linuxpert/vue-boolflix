@@ -2,7 +2,7 @@
   <div id="app">
     <SearchBar  @searching="startSearch" />
 
-    <Content :movies="movieList" />
+    <Content :movies="movieList" :tvs="tvList"/>
   </div>
 </template>
 
@@ -19,9 +19,12 @@ export default {
   },
   data() {
     return {
-       apiUrl: "https://api.themoviedb.org/3/search/movie?api_key=971c983e8762f921083518b235cba01b&query=",
-        movieList: [],
-        searchMovie: "",
+      apiTv: "https://api.themoviedb.org/3/search/tv?api_key=971c983e8762f921083518b235cba01b&language=it_IT&query=",
+      tvList: [],
+      searchTv: "",
+      apiUrl: "https://api.themoviedb.org/3/search/movie?api_key=971c983e8762f921083518b235cba01b&query=",
+      movieList: [],
+      searchMovie: "",
     }
   },
   methods: {
@@ -35,6 +38,17 @@ export default {
     startSearch(filmToSearch) {
       this.searchMovie = filmToSearch;
       this.getMovies();
+    },
+    getTvs() {
+      axios 
+      .get(this.apiTv+this.searchTv)
+      .then((result) => {
+          this.tvList = result.data.results
+      })
+    },
+    startSearchTv(tvToSearch) {
+      this.searchTv = tvToSearch;
+      this.getTvs();
     }
   }
 }
