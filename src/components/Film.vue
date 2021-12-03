@@ -1,7 +1,8 @@
 <template>
   <div class="film">
     <div class="img_poster">
-      <img :src="`https://image.tmdb.org/t/p/w342${film.poster_path}`" alt="" class="img_film">
+      <img v-if="film.backdrop_path === null" src="https://www.losbagliato.it/wp-content/uploads/2021/07/copertina-netflix-23-giugno-960x960.png" alt="" class="img_null">
+      <img v-else :src="`https://image.tmdb.org/t/p/w342${film.poster_path}`" alt="" class="img_film">
       <div class="info">
         <div class="info_film">
           <h3>Titolo:</h3><span>{{film.title}}</span>
@@ -22,7 +23,7 @@
         
       
         <div class="info_film">
-          <h3>Voto: </h3><star-rating :rating="getStar()" star-size="30" increment="1" :show-rating="false"></star-rating>
+          <h3>Voto: </h3><star-rating :rating="getStar()" :star-size="30" :increment="1" :show-rating="false"></star-rating>
         </div>
         <div class="info_film">
           <h3>Overview: </h3><span>{{film.overview}}</span>
@@ -106,5 +107,13 @@ export default {
         .film:hover .info{
           display: block;
         }
+        .img_null{
+        object-fit: cover;
+        width: 100%;
+        
+      }
+      .film:hover .img_null{
+        display: none;
+      }
     
 </style>
