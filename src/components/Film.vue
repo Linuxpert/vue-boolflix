@@ -22,7 +22,7 @@
         
       
         <div class="info_film">
-          <h3>Voto: </h3><span>{{film.vote_average/2}}</span>
+          <h3>Voto: </h3><star-rating :rating="getStar()" star-size="30" increment="1" :show-rating="false"></star-rating>
         </div>
         <div class="info_film">
           <h3>Overview: </h3><span>{{film.overview}}</span>
@@ -37,12 +37,21 @@
 </template>
 
 <script>
+import StarRating from 'vue-star-rating'
 
 export default {
   name: 'Film',
+  components: {
+    StarRating
+  },
   props: {
     film: Object,
   },
+  methods: {
+    getStar(){
+      return this.film.vote_average / 2
+    }
+  }
   
 }
 

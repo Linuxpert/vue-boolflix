@@ -11,7 +11,7 @@
                 <img v-if="serie.original_language === 'en'" src="https://lonampio.files.wordpress.com/2014/08/bandiera-inglese.png?w=256" :alt="serie.title" class="flag">
                 <img v-else-if="serie.original_language === 'it'" src="https://www.uniba.it/english-version/students/services/special-needs-sector/bandiera-italiana.png/image" :alt="serie.title" class="flag">
                 <img v-else-if="serie.original_language === 'fr'" src="https://www.ristorantemarinadelnettuno.com/wp-content/uploads/2019/08/bandiera-francia-png-3.png" :alt="serie.title" class="flag">
-                <h3>Voto: {{serie.vote_average/2}}</h3>
+                <h3>Voto: <star-rating :rating="getStar()" star-size="30" increment="1" :show-rating="false"></star-rating></h3>
                 <h3>Overview: {{serie.overview}}</h3>
 
           </div>
@@ -25,13 +25,21 @@
 </template>
 
 <script>
+import StarRating from 'vue-star-rating'
 
 export default {
   name: 'Series',
+  components: {
+    StarRating
+  },
   props: {
     serie: Object,
   },
-  
+  methods: {
+    getStar(){
+      return this.film.vote_average / 2
+    }
+  }
 }
 
 </script>
